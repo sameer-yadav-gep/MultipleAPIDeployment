@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multiple-api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multiple-api-pod
+  template:
+    metadata:
+      labels:
+        app: multiple-api-pod
+    spec:
+      containers:
+      - name: student-api-poc
+        image: studentapitest:dev
+        ports:
+        - containerPort: 5000
+      - name: weather-api-poc
+        image: weatherapitest:dev
+        ports:
+        - containerPort: 5001
