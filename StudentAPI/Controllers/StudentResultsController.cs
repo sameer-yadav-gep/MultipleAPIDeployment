@@ -18,7 +18,7 @@ namespace StudentAPI.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetStudentResults")]
+        [HttpGet("GetStudentResults")]
         public IEnumerable<StudentResult> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new StudentResult
@@ -27,6 +27,12 @@ namespace StudentAPI.Controllers
                 StudentName = Names[Random.Shared.Next(Names.Length)]
             })
             .ToArray();
+        }
+
+        [HttpGet("HealthCheck")]
+        public ActionResult<string> HealthCheck()
+        {
+            return Ok("Healthy");
         }
     }
 }
